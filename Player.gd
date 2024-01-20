@@ -19,6 +19,13 @@ func _process(delta: float) -> void:
 # จะเข้าฟังก์ชันนี้เมื่อ player ไปแตะกับ object อื่นๆ
 func _on_body_entered(body: Node) -> void:
 	if "Goal" in body.get_groups():
-		print("You win!")
+		complete_level()
 	if "Hazard" in body.get_groups():
-		print("You crashed!")
+		crash_sequence()
+
+func crash_sequence() -> void:
+	get_tree().reload_current_scene()
+
+func complete_level() -> void:
+	get_tree().quit()
+
