@@ -1,7 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpygpak4qvghm"]
+[gd_scene load_steps=5 format=3 uid="uid://bpygpak4qvghm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n8kd4"]
 albedo_color = Color(0.4, 0.270588, 0.176471, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u3fdi"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vq106"]
+sky_material = SubResource("ProceduralSkyMaterial_u3fdi")
+
+[sub_resource type="Environment" id="Environment_0dr7u"]
+background_mode = 1
+background_color = Color(0.07, 0.0449633, 0.0294, 1)
+sky = SubResource("Sky_vq106")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="Floor" type="CSGBox3D" groups=["Hazard"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
@@ -78,3 +93,26 @@ material = SubResource("StandardMaterial3D_n8kd4")
 transform = Transform3D(-0.418265, 0.194367, -0.887286, 0.522128, 0.850771, -0.0597624, 0.743261, -0.488273, -0.457332, -8.46616, 15.1844, -6.51466)
 size = Vector3(3, 10, 3)
 material = SubResource("StandardMaterial3D_n8kd4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.984808, -0.111619, 0.133022, 0, 0.766044, 0.642788, -0.173648, -0.633022, 0.754407, 0, 0, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0dr7u")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+omni_range = 12.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.27331, 9, 0)
+omni_range = 12.0
+omni_attenuation = 0.5
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.14533, 9, 0)
+omni_range = 12.0
+omni_attenuation = 0.5
