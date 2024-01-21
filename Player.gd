@@ -19,13 +19,13 @@ func _process(delta: float) -> void:
 # จะเข้าฟังก์ชันนี้เมื่อ player ไปแตะกับ object อื่นๆ
 func _on_body_entered(body: Node) -> void:
 	if "Goal" in body.get_groups():
-		complete_level()
+		complete_level(body.file_path)
 	if "Hazard" in body.get_groups():
 		crash_sequence()
 
 func crash_sequence() -> void:
 	get_tree().reload_current_scene()
 
-func complete_level() -> void:
-	get_tree().quit()
+func complete_level(next_level_file: String) -> void:
+	get_tree().change_scene_to_file(next_level_file)
 
